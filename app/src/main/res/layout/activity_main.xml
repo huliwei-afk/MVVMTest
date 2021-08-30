@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+    <!-- 修改动态生成的dataBinding文件位置 -->
+    <data class="com.example.ActivityFirst">
+        <!-- 同名区分alias -->
+        <import type="com.example.mvvmtest.Swordsman" />
+        <import type="com.example.mvvmtest.Utils"/>
+        <variable
+            name="swordsman"
+            type="com.example.mvvmtest.Swordsman" />
+
+        <!-- 也可以定义属性 -->
+        <variable
+            name="nickname"
+            type="String" />
+        <variable
+            name="age"
+            type="int" />
+        <variable
+            name="isPerson"
+            type="boolean" />
+
+        <!-- 也可以定义集合和map -->
+        <import type="java.util.ArrayList"/>
+        <import type="java.util.Map"/>
+        <variable
+            name="list"
+            type="ArrayList&lt;String>" />
+        <variable
+            name="map"
+            type="Map&lt;String,String&gt;" />
+        <variable
+            name="arrays"
+            type="String[]" />
+
+        <!-- 点击事件处理 -->
+        <variable
+            name="OnClickListener"
+            type="android.view.View.OnClickListener" />
+
+        <!-- 也支持表达式 -->
+        <import type="android.view.View"/>
+
+        <!-- 数据转换器Converter -->
+        <variable
+            name="time"
+            type="java.util.Date" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <!-- 普通dataBinding -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{swordsman.name}"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{swordsman.level}"/>
+
+        <!-- 点击事件处理的两种方式 -->
+        <Button
+            android:id="@+id/bt_next_1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="@{OnClickListener}"/>
+
+        <!-- 定义一些基本数据类型 -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{nickname}"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{String.valueOf(age)}"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{String.valueOf(isPerson)}"/>
+
+        <!-- 定义一些集合 -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{list.get(1)}"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{map.get(`age`)}"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{arrays[1]}"/>
+
+        <!-- 导入静态类 -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{Utils.getName(swordsman)}"/>
+
+        <!-- xml支持表达式 -->
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{`Age :` + String.valueOf(age)}"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="三目运算"
+            android:visibility="@{isPerson?View.VISIBLE:View.GONE}"/>
+
+        <!-- 数据转换 -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{time}"/>
+    </LinearLayout>
+
+</layout>

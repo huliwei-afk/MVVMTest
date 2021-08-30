@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <!-- BaseObservable -->
+    <data>
+        <import type="com.example.mvvmtest.ObSwordsman"/>
+        <variable
+            name="obSwordsman"
+            type="ObSwordsman" />
+
+        <!-- ObservableField -->
+        <import type="com.example.mvvmtest.ObFSwordsman"/>
+        <variable
+            name="obFSwordsman"
+            type="ObFSwordsman" />
+
+        <!-- 容器类Observable -->
+        <import type="java.util.ArrayList"/>
+        <import type="java.util.Map"/>
+        <variable
+            name="list"
+            type="ArrayList&lt;com.example.mvvmtest.Swordsman>" />
+
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <!-- BaseObservable -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{obSwordsman.name}"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{obSwordsman.level}"/>
+        <Button
+            android:id="@+id/bt_updata_obswordsman"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:text="使用BaseObservable更新数据"/>
+
+        <!-- Field -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{obFSwordsman.name}"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{obFSwordsman.level}"/>
+        <Button
+            android:id="@+id/bt_updata_obFSwordsman"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:text="使用ObservableFiled更新数据"/>
+
+        <!-- 容器 -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{list.get(0).name}"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{list.get(1).name}"/>
+        <Button
+            android:id="@+id/bt_updata_obmap"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:text="使用容器Observable更新数据"/>
+
+        <!-- 双向绑定 -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{obSwordsman.name}"/>
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@={obSwordsman.name}"/>
+        <Button
+            android:id="@+id/bt_updata_bind_reset"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:text="双向绑定"/>
+    </LinearLayout>
+
+</layout>
